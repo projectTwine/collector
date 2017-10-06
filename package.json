@@ -1,0 +1,24 @@
+{
+  "name": "collector",
+  "version": "1.0.0",
+  "description": "aggregate lots of different educational resources online and combine. 1. TeamTreeHouse ( 2. DataCamp () 3. Codeschool (Interactive) 4. YouTube (Videos) 5. O'Reilly",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projectTwine/collector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/projectTwine/collector/issues"
+  },
+  "homepage": "https://github.com/projectTwine/collector#readme",
+  "dependencies": {
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.8.4"
+  }
+}
