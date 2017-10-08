@@ -1,18 +1,33 @@
 const google = require('googleapis');
 const rp = require ('request-promise');
 const fetch = require('node-fetch');
+const util = require('util');
+const fs = require('fs');
+
+const inspectJSON = function(object) {
+  console.log(util.inspect(object, {showHidden: false, depth: null}));
+}
+
 
 const API_KEY = 'AIzaSyB4yeaiYcdGqJkzJRFvuduc79CZu2VC92c';
 
 async function getYouTubeCaptions() {
   try {
-    const result = await fetch(`https://www.googleapis.com/youtube/v3/captions?videoId=M7FIvfx5J10&part=snippet&key=${API_KEY}`);
-    console.log(result);
+    const result = await fetch(`https://www.googleapis.com/youtube/v3/captions?videoId=568g8hxJJp4&part=snippet&key=${API_KEY}`);
+    const subtitles = await result.json();
+    inspectJSON(subtitles);
+    const subtitleIdToDownload = subtitles.items[0].id;
+    //How to use a stream instead?
+    //TODO: use access tokens and OAuth 2.0 i think is required to download captions here
+    const res = await fetch(`https://www.googleapis.com/youtube/v3/captions/${subtitleIdToDownload}?key=${API_KEY}`);
+    const dest = fs.createWriteStream('./file');
+    res.body.pipe(dest);
   } catch (error) {
     console.warn(error);
   }
 }
 
 getYouTubeCaptions();
+
 
 
